@@ -1,6 +1,8 @@
-# boxing-alerts
+# boxing-counter 🥊
 
-A Clojure library designed to ... well, that part is up to you.
+It is a Clojure application designed to simulate real-fight rounds and intervals. Perfect for both seasoned fighters and aspiring pugilists, this tool provides a convenient and customizable way to hone your timing, endurance, and focus during practice sessions.
+
+![Menu](/resources/assets/images/menu.png )
 
 ## Usage
 
