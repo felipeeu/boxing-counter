@@ -1,0 +1,75 @@
+(ns boxing-alerts.core
+  (:require [clojure.core.async
+             :refer [ go-loop <! timeout ]]
+            [dynne.sampled-sound :refer :all]))
+
+(def s (sinusoid 1.0 440))
+
+(def boxing-bell-sound (read-sound "boxing-bell.wav"))
+
+(defn foo
+  "I don't do a whole lot."
+  [x]
+  (println x "Hello, Worldround!"))
+
+(defn fight-time-without-breaks
+  "return the fight time without the break times"
+  [rounds]
+  (let [round (* 3 60)]
+    (* round rounds)))
+
+
+(defn fight-time
+  "return total fight time in seconds including breaks"
+  [rounds]
+  (let [break 60]
+    (+
+     (fight-time-without-breaks rounds)
+     (* break
+        (- rounds 1)))))
+
+
+(defn fragment-fight-time
+  "return a list of fragmented fight time without intervals"
+  [rounds]
+  (loop [min 0
+         total-time (fight-time-without-breaks rounds)
+         fragmented-time '()]
+    (let [round 180]
+      (if (= min total-time)
+        (rest fragmented-time)
+        (recur min (- total-time 180) (conj fragmented-time total-time "break"))))))
+
+(defn counter
+  "show the number of time"
+  [rounds]
+  (go-loop [total-time (fight-time rounds)]
+    (when  (>= 0 total-time)
+      (println total-time)
+      (<! (timeout 1000))
+      (recur (- total-time 1)  )
+      )
+    )
+  )
+
+(defn play-alert-by-round
+  "Play the sound alert  based on the number of rounds"
+  [rounds]
+  (go-loop [rounds rounds
+            list []]
+    (when (>= rounds 0)
+      ;(play boxing-bell-sound)
+       (rest (reverse list))
+      (<! (timeout 1000))
+    (recur (- rounds 1)(conj list rounds "break")))))
+  
+ 
+
+
+(defn -main
+  "The entry-point for lein run"
+  [& args]
+  (play boxing-bell-sound)
+  (println "Starting Fight ..."))
+
+

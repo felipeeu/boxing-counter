@@ -1,0 +1,14 @@
+(ns boxing-alerts.core-test
+  (:require [clojure.test :refer :all]
+            [boxing-alerts.core :refer :all]))
+
+(deftest a-test
+  (testing "Starting tests ..."
+    (is (= 900  (fight-time 4)))
+    (is (= 420 (fight-time 2)))
+    (is (= 540 (fight-time-without-breaks 3)))
+    ;(is (= nil (fragment-fight-time 4)))
+    ))
+
+
+
