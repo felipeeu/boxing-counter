@@ -4,9 +4,29 @@ It is a Clojure application designed to simulate real-fight rounds and intervals
 
 ![Menu](/resources/assets/images/menu.png )
 
-## Usage
+### Features
 
-FIXME
+* **Interval Timer:** Set customizable work and rest intervals for your boxing drills. 
+* **Sound Alerts:** Utilize the computer's sound system to generate audio signals for the start/end of work and rest periods. 
+* **Visual Timer:** A visual timer displays the remaining time in each interval, aiding in focus and pacing.
+
+### Requirements
+
+* Clojure: Download and install from https://clojure.org/guides/install_clojure
+* Leiningen: A Clojure build tool (often included with Clojure installations).
+
+### Getting Started
+
+1. **Clone the Repository:**
+```git clone git@github.com:felipeeu/boxing-counter.git```
+
+
+3. **(Optional) Set Up Leiningen:**
+
+If Leiningen is not automatically available, follow the instructions on the Leiningen website: [https://leiningen.org/tutorial.html]
+
+### Running the Project
+```lein run```
 
 ## License
 
