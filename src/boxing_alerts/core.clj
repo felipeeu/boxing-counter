@@ -4,6 +4,8 @@
 
 
 (def boxing-bell-sound (read-sound "./resources/assets/sounds/boxing-bell.wav"))
+(def knock-sound (read-sound "./resources/assets/sounds/knock.mp3"))
+
 
 (def round-options '({:id "1" :value 3 :text "3 rounds of 3 minutes"}
                      {:id "2" :value 4 :text "4 rounds of 2 minutes"}
@@ -17,6 +19,7 @@
 (defn countdown [moment-type round-number time-in-seconds]
   (doseq [i (range time-in-seconds 0 -1)]
     (println (str moment-type " " round-number  "- " (seconds-to-min-sec i)))
+    (if (= i 10) (play knock-sound) nil)
     (Thread/sleep 1000)))
 
 (defn play-round
